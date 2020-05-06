@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="reglist">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Osm Id</th>
+          <th>Products</th>
+          <th>Order Details</th>
+          <th>Gtin</th>
+          <th>Quantity</th>
+          <th>Template</th>
+          <th>Serial Number Type</th>
+          <th>Serial Number</th>
+          <th>Template Id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registration of registrations; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ registration.omsid }}</td>
+          <td>{{ registration.products }}</td>
+          <td>{{ registration.orderdetails}}</td>          
+          <td>{{ registration.gtin }}</td>
+          <td>{{ registration.quantity}}</td>
+          <td>{{ registration.template }}</td>
+          <td>{{ registration.serialtype }}</td>
+          <td>{{ registration.serialnumber }}</td>
+          <td>{{ registration.templateid }}</td>
+          
+          
+          <td>
+            <button type="button" class="btn btn-info" (click)="onEdit(i)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary" (click)="onNew()">New</button>
+    </div>
+  </div>
+  <br>
+  <div class="regentry" *ngIf="showNew">
+    <form (ngSubmit)="onSave()">
+      <div class="form-group row">
+        <label for="omsid-input" class="col-2 col-form-label">Osm Id</label>
+        <div class="col-10">
+          <input class="form-control" type="number" [(ngModel)]="regModel.omsid" name="omsid">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="products-input" class="col-2 col-form-label">Products</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.products" name="products">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="orderdetails-input" class="col-2 col-form-label">Order Details</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.orderdetails" name="orderdetails">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="gtin-input" class="col-2 col-form-label">Gtin</label>
+        <div class="col-10">
+          <input class="form-control" type="number" [(ngModel)]="regModel.gtin" name="gtin">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="quantity-input" class="col-2 col-form-label">quantity</label>
+        <div class="col-10">
+          <input class="form-control" type="number" [(ngModel)]="regModel.quantity" name="quantity">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="template-input" class="col-2 col-form-label">Template</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.template" name="template">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="serialtype-input" class="col-2 col-form-label">Serial Number Type</label>
+        <div class="col-10">
+          <input class="form-control" type="number" [(ngModel)]="regModel.serialtype" name="serialtype">
+        </div>
+      </div>     
+      </div>
+      <div class="form-group row">
+        <label for="serialnumber-input" class="col-2 col-form-label">Serial Number </label>
+        <div class="col-10">
+          <input class="form-control" type="number" [(ngModel)]="regModel.serialnumber" name="serialnumber">
+        </div>
+      </div>
+    
+      
+      <button type="submit" class="btn btn-success">{{submitType}}</button>
+      <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+</div>
